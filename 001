@@ -1,0 +1,79 @@
+#cs
+This script is for sending the various resources to the clan Stronghold.
+In game - Make sure that you are in the Stronghold and have the "Send Resources" window open.
+All you need to do is specify which resource you want to send and how many waves of max marches you want to send.
+Read the comments for the different functions for more information.
+When everything is set, press "F5" to run the script. "ESC" will stop it if needed.
+#ce
+
+HotKeySet("{ESC}", "Terminate") ; Pressing "ESC" will stop the script.
+Func Terminate()
+    Exit
+EndFunc
+
+
+WinActivate("Vikings: War of Clans | Plarium.com - Ghost Browser") ;Activates the game window before running.
+sleep (200)
+
+Local $Resource_To_Send = "Stone" ; Change this to the resource you want to send. (Food, Lumber, Iron, Stone or Silver)
+Local $Waves = 2 ; How many waves you want send.
+
+If $Resource_To_Send = "Food" Then
+   While $Waves > 0 ; Keeps sending resources while there is still waves left to do.
+	  Local $Marches = 2 ; Enter how many marches you can send at once.
+	  While $Marches > 0 ; Sends out marches until you reached max number decided in previous line.
+		 MouseClickDrag("left", 1105, 676, 1320, 676) ; Selects max amount of resource.
+		 Sleep (200) ; Pause to give time for mouse to reach the Send button.
+		 MouseClick("left", 1480, 1006) ; Clicks on Send.
+		 Sleep(300) ; Pauses before sending next march.
+
+		 $Marches -= 1 ; Subtracts one march from the total amount you can send at once, script waits for them to return with sleep command below.
+	  WEnd
+	  Sleep(5000) ; Waits for your marches to come back before sending them out again.
+	  $Waves -= 1 ; Subtracts one wave from total amount you have chosen to send.
+   WEnd
+ElseIf $Resource_To_Send = "Lumber" Then
+   While $Waves > 0
+	  Local $Marches = 2
+	  While $Marches > 0
+		 MouseClickDrag("left", 1105, 760, 1320, 760)
+		 Sleep(200)
+		 MouseClick("left", 1480, 1006)
+		 Sleep(300)
+
+		 $Marches -= 1
+	  WEnd
+	  Sleep(5000)
+	  $Waves -= 1
+   WEnd
+ElseIf $Resource_To_Send = "Iron" Then
+   While $Waves > 0
+	  Local $Marches = 2
+	  While $Marches > 0
+		 MouseClickDrag("left", 1105, 840, 1320, 840)
+		 Sleep(200)
+		 MouseClick("left", 1480, 1006)
+		 Sleep(300)
+
+		 $Marches -= 1
+	  WEnd
+	  Sleep(5000)
+	  $Waves -= 1
+   WEnd
+ElseIf $Resource_To_Send = "Stone" Then
+   MouseClickDrag("left", 1563, 615, 1563, 669) ; Scrolls down to Stone in the Send Resources window then continues with selecting Stone and sends it.
+   While $Waves > 0
+	  Local $Marches = 2
+	  While $Marches > 0
+		 MouseClickDrag("left", 1105, 844, 1320, 844)
+		 Sleep(200)
+		 MouseClick("left", 1480, 1006)
+		 Sleep(300)
+
+		 $Marches -= 1
+	  WEnd
+	  Sleep(5000)
+	  $Waves -= 1
+   WEnd
+
+EndIf
